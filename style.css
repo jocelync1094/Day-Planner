@@ -11,6 +11,7 @@ body {
     color: #000000;
     border-left: 1px solid black;
     padding: 10px;
+    width:960px
   }
   
   .jumbotron {
@@ -21,6 +22,9 @@ body {
     border-bottom: 10px solid black;
   }
   
+  .container {
+      margin: 0 auto;
+  }
   .description{
     white-space: pre-wrap;
   }

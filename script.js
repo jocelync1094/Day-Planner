@@ -7,8 +7,14 @@ function makeThePlanner () {
     var hourRow = $("<tr>")
     hourRow.attr("class",[i]);
     var timeColumn = $("<td>" + timeArray[i] + "</td>");
+    timeColumn.addClass("time=block")
+    timeColumn.attr("style","background-color:white;color:black;border-bottom:solid 2px; padding: 20px");
     var eventColumn = $("<td>");
+    eventColumn.attr("style","border-bottom:solid 2px");
     var saveColumn = $("<td>")
+    saveColumn.addClass("saveBtn");
+    saveColumn.attr("style","padding:20px")
+    
     
     //my event details
     var formDiv = $("<form>");
@@ -67,6 +73,9 @@ $("#currentDay").append($currentDay);
 //getting the current hour
 var hours = [9,10,11,12,1,2,3,4,5];
 var currentHour = moment().hour();
+if(currentHour>12){
+    currentHour-=12;
+}
 var positionOfTime = hours.indexOf(currentHour);
 
 //setting the color for current hour
