@@ -5,6 +5,7 @@ function makeThePlanner () {
     var tableDiv = $("<table>");
     for (var i = 0; i<timeArray.length ; i++){
     var hourRow = $("<tr>")
+    hourRow.attr("class",[i]);
     var timeColumn = $("<td>" + timeArray[i] + "</td>");
     var eventColumn = $("<td>");
     var saveColumn = $("<td>")
@@ -14,9 +15,7 @@ function makeThePlanner () {
     formDiv.addClass("form-group")
     formDiv.attr("id",[i]);
     var userInputArea = $("<textarea>");
-    userInputArea.addClass("form-control");
-    userInputArea.attr("id","exampleFormControlTextarea1");
-    userInputArea.attr("rows","3");
+    
     formDiv.append(userInputArea);
     eventColumn.append(formDiv);
     
@@ -60,6 +59,28 @@ var storedEvents = localStorage.getItem(key);
 }
 
 displaySavedEvent();
+//setting today's date
+var $currentDay = $("<div>");
+$currentDay.text(moment().format("MMM Do YY")); 
+$("#currentDay").append($currentDay);
 
+//getting the current hour
+var hours = [9,10,11,12,1,2,3,4,5];
+var currentHour = moment().hour();
+var positionOfTime = hours.indexOf(currentHour);
 
+//setting the color for current hour
+var currentTimeRow = $("tr."+ positionOfTime );
+currentTimeRow.addClass("present");
 
+//setting the color for past hours
+for (var i=0; i<positionOfTime; i++){
+var pastTimeRow = $("tr." + [i]);
+pastTimeRow.addClass("past");
+}
+
+//setting the color for future hours
+for (var i = positionOfTime+1; i< hours.length;i++){
+    var futureTimeRow = $("tr." + [i]);
+    futureTimeRow.addClass("future");
+}
